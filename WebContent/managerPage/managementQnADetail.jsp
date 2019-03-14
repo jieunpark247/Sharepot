@@ -115,7 +115,11 @@
                <td id="table-td" width="404" align="left" style="padding-left:15px; text-align:center;">${qnaDTO.title }</td>
                <td id="table-td" width="109" style="background-color:#E6E6E6; text-align:center;"><font style="font-size:15px; color:#151515;  margin-bottom:40px">등록일</font></td>
                <td id="table-td" width="109" style="text-align:center;"><fmt:formatDate value="${qnaDTO.date }" pattern="yyyy-MM-dd" /></td>
-               
+            </tr>
+            <tr height="40" style="border:1px solid black;">
+            <td colspan="1" id="table-td" width="100" style="background-color:#E6E6E6; text-align:center;"><font style="font-size:15px; color:#151515; margin-bottom:40px">ID</font></td>
+            <td colspan="3" id="table-td" width="404" align="left" style="padding-left:15px; text-align:center;">${qnaDTO.member_id }</td>
+            </tr>
             </tr>
             <tr height="40" style="border:1px solid black;">
             <td colspan="1" id="table-td" width="100" style="background-color:#E6E6E6; text-align:center;"><font style="font-size:15px; color:#151515; margin-bottom:40px">내용</font></td>
@@ -127,10 +131,10 @@
             <tr height="30" style="border:1px solid #ffffff;" ><td colspan="4" style="text-align:center;"><font style="font-size:29px; color:#424242; font-weight:bold; margin-bottom:40px">답변</font></td></tr>
             <tr height="20">
             <tr height="50" style="border:1px solid black;">
-            <td id="table-td" width="100" style="background-color:#E6E6E6; text-align:center;"><font style="font-size:15px; color:#151515;  margin-bottom:40px">제목</font></td>
-               <td id="table-td" width="404" align="left" style="padding-left:15px; text-align:center;">${qnaDTO.title }</td>
+            <td id="table-td" width="100" style="background-color:#E6E6E6; text-align:center;"><font style="font-size:15px; color:#151515;  margin-bottom:40px">ID</font></td>
+               <td id="table-td" width="404" align="left" style="padding-left:15px; text-align:center;">관리자</td>
                <td id="table-td" width="109" style="background-color:#E6E6E6; text-align:center;"><font style="font-size:15px; color:#151515; margin-bottom:40px">등록일</font></td>
-               <td id="table-td" width="109" style="text-align:center;"><fmt:formatDate value="${qnaDTO.date }" pattern="yyyy-MM-dd" /></td>
+               <td id="table-td" width="109" style="text-align:center;"><fmt:formatDate value="${qnaCommentlist.date }" pattern="yyyy-MM-dd" /></td>
             </tr>
             <tr class="myQna" height="50" style="border:1px solid black;">
                   <td colspan="1" id="table-td" width="100" style="background-color:#E6E6E6;  text-align:center;"><font style="font-size:15px; color:#151515;  margin-bottom:40px">답변</font></td>
@@ -138,45 +142,6 @@
             </td>
             </tr>
             </c:forEach>
-         <%--    <tr style="border-bottom: 1px solid #cbcbcb">
-               <td colspan="4" align="left" style="padding-top:24px; padding-left:20px; padding-bottom:24px; padding-right:20px">
-                  <div>
-                     <c:if test="${bdto.status.equals('y')}"><span class="statusY" style="padding-left: 11px; width: 55px">답변완료</span></c:if><c:if test="${bdto.status.equals('n')}"><span class="statusN" style="padding-left: 11px; width: 55px">답변대기</span></c:if>
-                  </div>
-                  <div style="margin-top:10px; line-height:23px">${qnaCommentlist.content }</div>
-               </td>
-            </tr> --%>
-            
-         </table>
-         <c:if test="${act.equals('qna')}">
-            <div align="right" style="margin-top:10px; margin-bottom:-40px">
-               <input id="gotoWriting" name="gotoWriting" type="button" value="글쓰기" style="width:80px; height:30px; background-color:#6bb546; border:0; border-radius:2px; font-size:12px; color:#ffffff; font-family:'나눔고딕'; cursor:pointer">
-            </div>
-         </c:if>
-      </div>
-   </div>
-   
-   <div class="div gnb" id="GNB" align="center" style="position:absolute; left:0px; top:88px; display:none" onmouseover="$('#GNB').css('display','block')" onmouseout="$('#GNB').css('display','none')">
-      <div style="width:798px; height:395px; border:4px solid #86b999; background-color:#ffffff">
-         <div class="div" style="background-color:#86b999" align="left">
-            <img src="images/main/gnb_category_2.png" width="220" style="margin-left:-1px">
-            <img src="images/main/btn_close.gif" width="30" style="position: absolute; margin-left: 538px; margin-top: 3px; cursor:pointer" onclick="$('#GNB').css('display','none')">
-         </div>
-         
-      </div>
-   </div>
-   
-   <!-- 카피라이트 -->
-   <div class="div" style="background-color:#423a37; height:31px"></div>
-   <div class="div" style="background-color:#ececec; height:161px" align="center">
-      <table cellspacing="0" cellpadding="0" width="916px" height="161">
-         <tr>
-            <td style="background-image:url('images/main/01main_109.gif'); background-size:916px; background-repeat:no-repeat"></td>
-         </tr>
-      </table>
-   </div>
-</div>
-
 
         <!--Common plugins-->
         <script src="./plugins/jquery/dist/jquery.min.js"></script>

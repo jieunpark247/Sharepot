@@ -4,7 +4,7 @@
 
  <header id="hoe-header" hoe-lpanel-effect="shrink">
                 <div class="hoe-left-header">
-                    <a href="#"> S<span>harePot</span></a>
+                    <a href="#"><img src="images/logo/logo3.png" width="100"></a>
                     <span class="hoe-sidebar-toggle"><a href="main.do"></a></span>
                 </div>
 
