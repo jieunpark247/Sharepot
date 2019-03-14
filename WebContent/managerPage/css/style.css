@@ -859,7 +859,10 @@ body #hoe-left-panel .panel-list > li.hoe-has-menu > ul.hoe-sub-menu, body #hoe-
 }
 
 .hoe-left-header {
-  background-color: #36c6d3;
+  background-color: white;
+}
+.hoe-left-header {
+	background-color: white;
 }
 
 #hoe-left-panel .panel-list ul.hoe-sub-menu li > a {
