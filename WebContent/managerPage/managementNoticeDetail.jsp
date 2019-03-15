@@ -88,7 +88,7 @@
                               <button type="submit"  title=""  data-placement="top" data-toggle="tooltip"
                                  type="button" data-original-title="수정하기"
                                  class="btn btn-sm btn-default" form="fix" value="Submit" >
-                                 <form action="./managerPage/managementNoticeUpdateWrite.do?notice_no=${param.notice_no}" method="post" id="fix">
+                                 <form action="managementNoticeUpdateWrite.do?notice_no=${param.notice_no}" method="post" id="fix">
                                     <input name="notice_no" value="<%=request.getParameter("notice_no")%>" type="hidden" /> <i class="fa fa-plus"></i>
                                  </form>
                                  
@@ -97,7 +97,7 @@
                               <!-- 삭제 -->
                               <button  type="submit" title="" data-placement="top" data-toggle="tooltip"
                                  data-original-title="삭제하기" class="btn btn-sm btn-default" form="delete" value="Submit" >
-                                 <form action="./MngNoticeDeleteAction.do" method="post" id="delete">
+                                 <form action="../MngNoticeDeleteAction.do" method="post" id="delete">
                                     <input name="notice_no" value="<%=request.getParameter("notice_no")%>" type="hidden" /> <i class="ion-trash-b"></i>
                                  </form>
                               </button>
@@ -126,7 +126,7 @@
 
                               <button  type="submit" title="" data-placement="top" data-toggle="tooltip"
                                  data-original-title="삭제하기" class="btn btn-sm btn-default" form="delete" value="Submit" >
-                                 <form action="./MngNoticeDeleteAction.do" method="post" id="delete">
+                                 <form action="../MngNoticeDeleteAction.do" method="post" id="delete">
                                     <input name="notice_no" value="<%=request.getParameter("notice_no")%>" type="hidden" /> <i class="ion-trash-b"></i> 삭제
                                  </form>
                               </button>

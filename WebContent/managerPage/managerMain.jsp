@@ -204,13 +204,13 @@ $(function () {
                       
                       <div class="row">
                       	<div class="col-md-3">
-                      	<c:if test="${dust.getWeather_flage_array().equals('맑음')}"><img src="images/emoji/sunny.png" width="400"></c:if>
-						<c:if test="${dust.getWeather_flage_array().equals('구름 조금')}"><img src="images/emoji/cloudy1.png" width="400"></c:if>
-						<c:if test="${dust.getWeather_flage_array().equals('구름 많음')}"><img src="images/emoji/cloudy2.png" width="400"></c:if>
-						<c:if test="${dust.getWeather_flage_array().equals('흐림')}"><img src="images/emoji/dark.png" width="400"></c:if>
-						<c:if test="${dust.getWeather_flage_array().equals('비')}"><img src="images/emoji/rainy.png" width="400"></c:if>
-						<c:if test="${dust.getWeather_flage_array().equals('눈/비')}"><img src="images/emoji/rainy_snowy.png" width="400"></c:if>
-						<c:if test="${dust.getWeather_flage_array().equals('눈')}"><img src="images/emoji/snowy.png" width="400"></c:if>
+                      	<c:if test="${dust.getWeather_flage_array().equals('맑음')}"><img src="../images/emoji/sunny.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('구름 조금')}"><img src="../images/emoji/cloudy1.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('구름 많음')}"><img src="../images/emoji/cloudy2.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('흐림')}"><img src="../images/emoji/dark.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('비')}"><img src="../images/emoji/rainy.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('눈/비')}"><img src="../images/emoji/rainy_snowy.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('눈')}"><img src="../images/emoji/snowy.png" width="400"></c:if>
 					
 					</div>
 					

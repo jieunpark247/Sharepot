@@ -113,7 +113,7 @@
 											</div>
 
 
-											<form action="./MngNoticeWriteSubmitAction.do" method="post">
+											<form action="../MngNoticeWriteSubmitAction.do" method="post">
 												<hr>
 										<%-- 		<input name="notice_no" type="hidden" readonly="readonly"
 													value=${noticelist.notice_no } /> --%>

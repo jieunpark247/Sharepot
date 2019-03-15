@@ -16,18 +16,18 @@ public class MngNoticeDeleteAction implements CommandAction {
 		
 		if (request.getParameter("notice_no") == null) {
 			// response.sendRedirect("managementNotice.jsp");
-			return "managementNotice.jsp";
+			return "managerPage/managementNotice.jsp";
 		} else {
 			String notice_no = request.getParameter("notice_no");
 			noticeDAO.deleteNotice(notice_no);
 		//if(noticeDAO.deleteNotice(notice_no) == 1) {
-				return "managementNotice.jsp";
+				return "managerPage/managementNotice.jsp";
 //			}else {
 //				System.out.println("3333333333333");
-//				return "mamagementNoticeDetail.jsp";
+//				return "managerPage/mamagementNoticeDetail.jsp";
 //			}
 			
-		//	return "managementNotice.jsp";
+		//	return "managerPage/managementNotice.jsp";
 		}
 	}
 }

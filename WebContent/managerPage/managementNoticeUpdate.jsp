@@ -78,7 +78,7 @@
 <!-- 로그인 내용 -->
 <div id="container" class="div container" align="center">
    <div class="divWid">
-      <form action="./MngNoticeUpdateAction.do" method="post"> 
+      <form action="../MngNoticeUpdateAction.do" method="post"> 
       
          <!-- 로그인 내용 -->
          <div style="margin-top:50px">
