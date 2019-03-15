@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 <title>SharePot</title>
-
+<!-- ============================================= -->
 <!-- Bootstrap -->
 <link href="./plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <!--side menu plugin-->
@@ -37,6 +37,7 @@
 <script src="./js/modernizr.js"></script>
 <script src="http://code.jquery.com/jquery-1.12.1.js"></script>
 <jsp:include page="managerMenu.jsp"></jsp:include>
+
 <!-- 상단메뉴바 -->
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

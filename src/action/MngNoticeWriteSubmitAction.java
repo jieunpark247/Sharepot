@@ -19,7 +19,7 @@ public class MngNoticeWriteSubmitAction implements CommandAction {
 
 			NoticeDAO noticeDAO = new NoticeDAO();
 			NoticeDTO noticewriteDTO = new NoticeDTO();
-			int manager_id = 11111112;
+			int manager_id = 12345678;
 //			String title = (String) request.getAttribute("title");
 //			String content = (String) request.getAttribute("content");
 			String title = request.getParameter("title");

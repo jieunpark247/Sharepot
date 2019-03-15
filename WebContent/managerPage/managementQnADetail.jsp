@@ -142,6 +142,11 @@
             </td>
             </tr>
             </c:forEach>
+            
+            
+            
+            
+            
 
         <!--Common plugins-->
         <script src="./plugins/jquery/dist/jquery.min.js"></script>

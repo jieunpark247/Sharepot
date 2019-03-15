@@ -63,7 +63,7 @@
 			</div>
 		</div>
 		<div style="width:105px; height:500px; margin:0 auto; margin-right:-120px">
-			<div class="laypop_quick" style="width:94px; position:absolute; z-index:100; margin:0 auto; top:30px"> 
+			<div class="laypop_quick" style="displan:none; width:94px; position:absolute; z-index:100; margin:0 auto; top:30px"> 
 				<div class="div" style="width:94px; height:26px; border-radius:0px; background-color:#ffffff; padding-top:7px; padding-bottom:7px; border:1px solid #dcdcdc">
 					<font style="font-size:12px; color:#000000">나의 쇼핑</font><br><img src="images/arrowDown2.png" width="10" style="margin-top:4px">
 				</div>
@@ -71,7 +71,7 @@
 					<div style="width:70px; height:3px; margin-top:-1px; background-color:#3b3b3b; margin-bottom:7px"></div>
 					<font style="font-size:12px; color:#000000">오늘 본 상품</font>
 					<div style="margin-top:2px; margin-bottom:2px; width:92px; background-color:#ffffff">
-							<a href="#"><img src="images/02store_test/무농약.png" width="80" style="margin-top:3px; margin-bottom:3px"></a>
+							<a href="#"><img src="images/items/umbrella.jpg" width="80" style="margin-top:3px; margin-bottom:3px"></a>
 					</div>
 					<a onclick="btn_top()" style="cursor:pointer"><div style="margin-top:4px; margin-left:-1px; width:96px; padding-top:6px; padding-bottom:7px; background-color:#3b3b3b">
 						<font style="font-size:12px; color:#ffffff; font-family:'Arial'; letter-spacing:0.5px">TOP</font><img src="images/arrowUp.png" width="10" style="margin-bottom:1px; margin-left:4px">

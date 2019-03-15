@@ -123,7 +123,7 @@
 			
 			<!-- 약관 동의4 -->
 			<div style="width:800px; margin-top:15px" align="center">
-				<a name="check4" id="check4"></a><font style="font-size:22px; color:#414141; font-weight:bold">* 도래도담 쇼핑몰 이용약관 (필수) *</font>
+				<a name="check4" id="check4"></a><font style="font-size:22px; color:#414141; font-weight:bold">* 쉐어팟 쇼핑몰 이용약관 (필수) *</font>
 				<div style="width:800px; margin-top:5px">
 					<textarea style="width:500px; height:150px; resize:none; font-family:'나눔고딕'; overflow-x:hidden" readonly>
 <jsp:include page="regiCheckTxt/regiTxt4.txt" />
@@ -141,7 +141,7 @@
 			<div id="regiCheck4" style="margin-bottom:30px; display:none">
 				<table class="table_basic" width="800" cellpadding="0" cellspacing="0" style="margin-top:3px">
 					<tr>
-						<td width="681" align="right"><a style="color:red; font-size:17px">도래도담 쇼핑몰 이용약관에 동의해주세요</a></td>
+						<td width="681" align="right"><a style="color:red; font-size:17px">쉐어팟 이용약관에 동의해주세요</a></td>
 						<td width="144"></td>
 					</tr>
 				</table>

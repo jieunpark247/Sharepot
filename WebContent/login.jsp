@@ -34,8 +34,8 @@
 			</table>
 			<!-- 로그인 내용 -->
 			<div style="margin-top:40px">
-				<font style="font-size:22px; color:#414141; font-weight:bold">도래도담 방문을 환영합니다</font><br><div style="margin-bottom:2px"></div>
-				<font style="font-size:14px; color:#acacac">도래도담은 고객님의 정보를 소중하게 생각합니다</font>
+				<font style="font-size:22px; color:#414141; font-weight:bold">쉐어팟 방문을 환영합니다</font><br><div style="margin-bottom:2px"></div>
+				<font style="font-size:14px; color:#acacac">쉐어팟 고객님의 정보를 소중하게 생각합니다</font>
 				<form name="loginForm" id="loginForm" method="post" action="login.do">
 					<table class="table_basic" width="500" cellpadding="0" cellspacing="0" style="margin-top:15px; margin-bottom:30px; border:1px #acacac solid">
 						<!-- 아이디 -->

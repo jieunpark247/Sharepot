@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ReportCommentDAO {
@@ -73,6 +76,47 @@ public class ReportCommentDAO {
 	}
 
 
+	public ReportCommentDTO insertCommentWrite(int comment_no,int manager_id, int report_no, String content, int ref) { // 공지사항 글쓰기 (데이터 삽입)
+		ReportCommentDTO reportwrite = new ReportCommentDTO();
+		String sql = " INSERT INTO report_comment(comment_no,manager_id,report_no,content,date,ref) VALUES(?,?,?,?,?,?)";
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		String today = null;
+		today = formatter.format(cal.getTime());
+		Timestamp ts = Timestamp.valueOf(today);
+		System.out.println("dfsfsdf");
+		try {
+			dbconn = DriverManager.getConnection(url, id, pw);
+			stmt = dbconn.createStatement();
+			PreparedStatement pstmt = dbconn.prepareStatement(sql);
+			pstmt.setInt(1, comment_no);
+			pstmt.setInt(2, manager_id);
+			pstmt.setInt(3, report_no);
+			pstmt.setString(4, content);
+			pstmt.setTimestamp(5, ts);
+			pstmt.setInt(6, ref);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("Exception 오류");
+			e.printStackTrace();
+
+		} finally {
+
+			try {
+
+				if (rs != null)
+					if (stmt != null)
+						stmt.close();
+				if (dbconn != null)
+					dbconn.close();
+			} catch (Exception e) {
+			}
+
+		}
+
+		return reportwrite;
+	}
 
 
 }

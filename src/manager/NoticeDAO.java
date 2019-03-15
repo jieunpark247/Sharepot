@@ -142,19 +142,12 @@ public class NoticeDAO {
 			stmt = dbconn.createStatement();
 			PreparedStatement pstmt = dbconn.prepareStatement(sql);
 			pstmt.setInt(1, manager_id);
-			
 			pstmt.setString(2, title);
 			pstmt.setString(3, content);
 			pstmt.setTimestamp(4, ts);
 			pstmt.setInt(5, hits);
 			pstmt.executeUpdate();
-
-//			noticewrite.setNotice_no(rs.getInt(1));
-//			noticewrite.setManager_id(rs.getString(2));
-//			noticewrite.setTitle(rs.getString(3));
-//			noticewrite.setContent(rs.getString(4));
-//			noticewrite.setDate(rs.getTimestamp(5));
-//			noticewrite.setHits(num);	
+	
 
 		} catch (Exception e) {
 			System.out.println("Exception ¿À·ù");
