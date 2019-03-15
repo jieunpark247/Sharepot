@@ -1,3 +1,5 @@
+<%@page import="floatingbanner.MainDAO"%>
+<%@page import="floatingbanner.MainDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,6 +7,11 @@
 
     
     <%@page import="static java.nio.charset.StandardCharsets.*"%>
+    
+    <% 
+	MainDTO dust=MainDAO.dustView();
+	request.setAttribute("dust", dust);
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -65,7 +72,7 @@ $(function () {
             show: true,
             font: { color: '#888888'},
             position: 'bottom',
-            ticks: [[1,'1 월'],[2,'2 월'],[3,'3 월'],[4,'4 월'],[5,'5 월'],[6,'6 월'],[7,'7 월'],[8,'8 월'],[9,'9 월'],[10,'10 월'],[11,'11 월'],[12,'12 월']],
+            ticks: [[0,'12 월'],[1,'1 월'],[2,'2 월'],[3,'3 월'],[4,'4 월'],[5,'5 월'],[6,'6 월'],[7,'7 월'],[8,'8 월'],[9,'9 월'],[10,'10 월'],[11,'11 월'],[12,'12 월']]
         },
         yaxis:{ show: true, font: { color: '#888888' }, min:1},
         colors: ["#36c6d3"],
@@ -194,6 +201,127 @@ $(function () {
                 <section id="main-content">
                     <div class="space-30"></div>
                     <div class="container">
+                      
+                      <div class="row">
+                      	<div class="col-md-3">
+                      	<c:if test="${dust.getWeather_flage_array().equals('맑음')}"><img src="images/emoji/sunny.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('구름 조금')}"><img src="images/emoji/cloudy1.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('구름 많음')}"><img src="images/emoji/cloudy2.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('흐림')}"><img src="images/emoji/dark.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('비')}"><img src="images/emoji/rainy.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('눈/비')}"><img src="images/emoji/rainy_snowy.png" width="400"></c:if>
+						<c:if test="${dust.getWeather_flage_array().equals('눈')}"><img src="images/emoji/snowy.png" width="400"></c:if>
+					
+					</div>
+					
+				  
+				      <div class="col-md-8">
+                      	
+                      <table border="1" frame="void" rules="rows" cellpadding="0" cellspacing="0">
+					<tr height="65">
+						<td align="left" style="vertical-align:top; padding-top:5px" width="1000"><font style="font-size:30px">현재 온도 : <fmt:formatNumber value="${dust.getWeather_degree_array()}" pattern="0" />℃</font> &nbsp&nbsp&nbsp 최저 온도 : <font style="font-size:15px; color:#14b1bf"><fmt:formatNumber value="${dust.getWeather_min_array()}" pattern="0" />℃ </font><font style="font-size:12px">/ 최고 온도 :</font><font style="font-size:15px; color:#d63535"> <fmt:formatNumber value="${dust.getWeather_max_array()}" pattern="0" />℃</font></td>
+					</tr>
+					</table>
+                      	<div class="panel-body">
+                                        <h5>강수 확률 :   ${dust.getWeather_rain_percent_array()}% &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        <c:choose>
+ 
+   												<c:when test="${dust.getWeather_rain_percent_array()>70 }">
+    														강수확률이 높으므로 우산을 많이 빌려갈 것으로 예상됩니다.
+    														</c:when>
+    											<c:when test="${dust.getWeather_rain_percent_array()>30 }">
+    														강수확률이 있으므로 우산을 빌려가는 사람이 생길 것으로 예상됩니다.
+    											</c:when>
+ 
+    											<c:otherwise>
+    											
+    														강수확률이 낮으므로 우산을 빌려가는 사람이 별로 없을 것 같습니다.
+    											
+    											</c:otherwise>
+ 
+												</c:choose>
+
+                                        </h5>
+                                        <div class="progress">
+                                        
+                                            <div style="width:${dust.getWeather_rain_percent_array()}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" role="progressbar" class="progress-bar progress-bar-success">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <h5>미세먼지 : ${dust.getPm10_array()} ㎍/m³ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        
+                                         <c:choose>
+ 
+   												<c:when test="${dust.getPm10_array()>150 }">
+    													
+    													미세먼지 농도가 매우 높으므로 마스크를 매우 많이 준비해 두세요.
+    													
+    											</c:when>
+ 												<c:when test="${dust.getPm10_array()>80 }">
+    													
+    													미세먼지 농도가 높으므로 마스크를 찾는 사람이 많이 챙길 것 같습니다.
+    													
+    											</c:when>
+    											<c:when test="${dust.getPm10_array()>30 }">
+    													
+    													미세먼지 농도가 보통 이므로 일부 인원은 마스크를 찾을 것 같습니다.
+    													
+    											</c:when>
+    											<c:otherwise>
+    											
+    													미세먼지 농도가 좋음 이므로 마스크를 찾는 인원이 없을것 같습니다.
+    											
+    											</c:otherwise>
+ 
+												</c:choose>
+                                        
+                                        
+                                        
+                                        </h5>
+                                        <div class="progress progress-striped active">	
+                                            <div style="width: ${dust.graph10()}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" class="progress-bar progress-bar-warning">
+                                                <span class="sr-only">)</span>
+                                            </div>
+                                        </div>
+                                        <h5>초 미세먼지 :   ${dust.getPm25_array()} ㎍/m³  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                                        
+                                         <c:choose>
+ 
+   												<c:when test="${dust.getPm10_array()>150 }">
+    													
+    													초미세먼지 농도가 매우 높으므로 마스크를 매우 많이 준비해 두세요.
+    													
+    											</c:when>
+ 												<c:when test="${dust.getPm10_array()>80 }">
+    													
+    													초미세먼지 농도가 높으므로 마스크를 찾는 사람이 많이 챙길 것 같습니다.
+    													
+    											</c:when>
+    											<c:when test="${dust.getPm10_array()>30 }">
+    													
+    													초미세먼지 농도가 보통 이므로 일부 인원은 마스크를 찾을 것 같습니다.
+    													
+    											</c:when>
+    											<c:otherwise>
+    											
+    													초미세먼지 농도가 좋음 이므로 마스크를 찾는 인원이 없을것 같습니다.
+    											
+    											</c:otherwise>
+ 
+												</c:choose>
+                                        
+                                        </h5>
+                                        <div class="progress progress-striped active">
+                                <div style="width: ${dust.graph25()}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" class="progress-bar progress-bar-danger">
+                                    <span class="sr-only"></span>
+                                </div>
+                            </div>
+                                    </div>
+                      	
+                      	</div>
+                      
+                      
+                      </div>
                       
                         <div class="row">
                             <div class="col-md-5">
@@ -325,7 +453,7 @@ $(function () {
                                                             <div class="media">
                                                                 <div class="media-left">
                                                                     <div class="avatar">
-                                                                        <img src="images/avtar-1.jpg" alt="" class="img-circle" width="40">
+                                                                        <img src="/Sharepot/managerPage/images/avtar-1.jpg" alt="" class="img-circle" width="40">
                                                                     </div>
                                                                     <div class="my_name">
                                                                         <p class=”bg-primary“ size="8p">${QnaVO.member_id}</p>

@@ -1,5 +1,8 @@
 package member;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,7 +11,7 @@ import java.sql.SQLException;
 
 public class MemberDAO {
 	
-	public int loginCheck(String mem_id, String mem_pw) {
+	public int loginCheck(String mem_id, String mem_pw) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException {
 		String url = "jdbc:mysql://ktds.couso1h6oido.ap-northeast-2.rds.amazonaws.com:3306/ktds?useSSL=false"; // 사용하려는 데이터베이스명을 포함한 URL 기술
 		String id = "ktds";
 		String pw = "ktds1234";
@@ -22,6 +25,9 @@ public class MemberDAO {
 		}
 		int flag = 0;
 		
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		    conn = DriverManager.getConnection(url, id, pw);
@@ -30,7 +36,7 @@ public class MemberDAO {
 		    sql = "select * from manager where manager_id=? && pwd=?";
 		    pstmt = conn.prepareStatement(sql);
 		    pstmt.setInt(1, member_id);
-		    pstmt.setString(2, mem_pw);
+		    pstmt.setString(2, aes256.encrypt(mem_pw) );
 		    rs = pstmt.executeQuery();
 		    if(rs.next()) {
 		    	flag = 2; //매니저임
@@ -39,7 +45,7 @@ public class MemberDAO {
 		    	try {
 		    		pstmt = conn.prepareStatement(sql);
 				    pstmt.setInt(1, member_id);
-				    pstmt.setString(2, mem_pw);
+				    pstmt.setString(2, aes256.encrypt(mem_pw) );
 				    rs = pstmt.executeQuery();
 				    if(rs.next()) {
 				    	flag = 1; //회원임
@@ -115,7 +121,7 @@ public class MemberDAO {
 		return flag;
 	}
 	
-	public boolean insertMember(MemberDTO mdto) {
+	public boolean insertMember(MemberDTO mdto) throws UnsupportedEncodingException {
 		
 		String url = "jdbc:mysql://ktds.couso1h6oido.ap-northeast-2.rds.amazonaws.com:3306/ktds?useSSL=false"; // 사용하려는 데이터베이스명을 포함한 URL 기술
 		String id = "ktds";
@@ -125,17 +131,20 @@ public class MemberDAO {
 		ResultSet rs = null;
 		boolean flag = false;
 		
+		//암호화 객체 생성
+				AES256 aes256 = new AES256();
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		    conn = DriverManager.getConnection(url, id, pw);
 		    String sql = "insert into member values(?,?,?,?,?,?,now(),0)";
 		    pstmt = conn.prepareStatement(sql);
 		    pstmt.setInt(1, mdto.getId());
-		    pstmt.setString(2, mdto.getName());
-		    pstmt.setString(3, mdto.getPwd());
-		    pstmt.setString(4, mdto.getPhone());
-		    pstmt.setString(5, mdto.getEmail());
-		    pstmt.setString(6, mdto.getBirth());
+		    pstmt.setString(2, aes256.encrypt( mdto.getName()));
+		    pstmt.setString(3, aes256.encrypt(mdto.getPwd()));
+		    pstmt.setString(4, aes256.encrypt(mdto.getPhone()));
+		    pstmt.setString(5, aes256.encrypt(mdto.getEmail()));
+		    pstmt.setString(6, aes256.encrypt(mdto.getBirth()));
 		    int insert = pstmt.executeUpdate();
 		    if(insert > 0) {
 		    	flag = true;

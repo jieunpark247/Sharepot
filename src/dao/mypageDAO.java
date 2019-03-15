@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +16,8 @@ import dto.Member;
 import dto.Offer;
 import dto.QandA;
 import dto.Rent;
-//id = 300으로 햇음!!
+
+import member.AES256;
 
 
 
@@ -371,7 +373,11 @@ public class mypageDAO {
 	}
 	
 	
-	public String getPwd(int member_id) {
+	public String getPwd(int member_id) throws UnsupportedEncodingException {
+		
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
+		
 		String result = "";
 		String sql = "SELECT pwd FROM member WHERE member_id=?";
 		
@@ -388,7 +394,7 @@ public class mypageDAO {
 		    rs = pStmt.executeQuery();
 		    
 		    if(rs.next()){
-				result = rs.getString(1);
+				result = aes256.decrypt(rs.getString(1));
 			}
 		    
 		}catch(Exception e) {
@@ -398,13 +404,16 @@ public class mypageDAO {
 		return result;
 	}
 	
-	public Member getMember(int member_id) {
+	public Member getMember(int member_id) throws UnsupportedEncodingException {
 		Member result = null;
 		String sql = "SELECT * FROM member WHERE member_id=?";
 		
 		PreparedStatement pStmt = null;
 		Connection con = null;
 		ResultSet rs = null;
+		
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -415,8 +424,8 @@ public class mypageDAO {
 		    rs = pStmt.executeQuery();
 		   
 		    if(rs.next()) {
-		    	result = new Member(rs.getInt("member_id"), rs.getString("name"),rs.getString("pwd"),rs.getString("tel"),
-		    			rs.getString("email"),rs.getString("birth_date"),rs.getTimestamp("date"),rs.getBoolean("email_check"));
+		    	result = new Member(rs.getInt("member_id"), aes256.decrypt(rs.getString("name")), aes256.decrypt(rs.getString("pwd")), aes256.decrypt(rs.getString("tel")),
+		    			aes256.decrypt(rs.getString("email")), aes256.decrypt(rs.getString("birth_date")) , rs.getTimestamp("date"),rs.getBoolean("email_check"));
 		    }
 		    
 		}catch(Exception e) {
@@ -430,21 +439,24 @@ public class mypageDAO {
 	}
 	
 	public int update(int member_id,String name, String pwd, String tel,
-			String email) {
+			String email) throws UnsupportedEncodingException {
 		String sql = "UPDATE member SET name=?,  pwd=?, tel=?, email=? WHERE member_id=?";
 		
 		int result = 0;
 		PreparedStatement pStmt = null;
 		Connection con = null;
 		
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		    con = DriverManager.getConnection(url, id, pw);
 			pStmt = con.prepareStatement(sql);
-			pStmt.setString(1, name);
-			pStmt.setString(2, pwd);
-			pStmt.setString(3, tel);
-			pStmt.setString(4, email);
+			pStmt.setString(1, aes256.encrypt(name) );
+			pStmt.setString(2, aes256.encrypt(pwd) );
+			pStmt.setString(3, aes256.encrypt(tel));
+			pStmt.setString(4, aes256.encrypt(email));
 			pStmt.setInt(5, member_id);
 			result = pStmt.executeUpdate();
 			
@@ -460,20 +472,23 @@ public class mypageDAO {
 		return result;
 	}
 	
-	public int updateNoPw(int member_id,String name, String tel,String email) {
+	public int updateNoPw(int member_id,String name, String tel,String email) throws UnsupportedEncodingException {
 		String sql = "UPDATE member SET name=?, tel=?, email=? WHERE member_id=?";
 		
 		int result = 0;
 		PreparedStatement pStmt = null;
 		Connection con = null;
 		
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		    con = DriverManager.getConnection(url, id, pw);
 			pStmt = con.prepareStatement(sql);
-			pStmt.setString(1, name);
-			pStmt.setString(2, tel);
-			pStmt.setString(3, email);
+			pStmt.setString(1, aes256.encrypt(name));
+			pStmt.setString(2, aes256.encrypt(tel));
+			pStmt.setString(3, aes256.encrypt(email));
 			pStmt.setInt(4, member_id);
 			result = pStmt.executeUpdate();
 			

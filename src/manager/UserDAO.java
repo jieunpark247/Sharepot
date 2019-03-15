@@ -1,5 +1,8 @@
 package manager;
 
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -9,6 +12,9 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import member.AES256;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 //import com.mysql.fabric.Response;
@@ -40,9 +46,13 @@ public class UserDAO {
 		}
 	}
 
-	public ArrayList<UserDTO> selectUser() { // 글 목록에 뿌리기
+	public ArrayList<UserDTO> selectUser() throws UnsupportedEncodingException { // 글 목록에 뿌리기
 		ArrayList<UserDTO> userlist = new ArrayList<UserDTO>();
 		String sql = "select * from member order by member_id asc ";
+		
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
+		
 		try {
 
 			dbconn = DriverManager.getConnection(url, id, pw);
@@ -52,11 +62,11 @@ public class UserDAO {
 			while (rs.next()) { 
 				UserDTO user = new UserDTO();
 				user.setMember_id(rs.getInt(1));
-				user.setName(rs.getString(2));
-				user.setPwd(rs.getString(3));
-				user.setTel(rs.getString(4));
-				user.setEmail(rs.getString(5));
-				user.setBirth_date(rs.getString(6));
+				user.setName( aes256.decrypt(rs.getString(2)));
+				user.setPwd( aes256.decrypt(rs.getString(3)));
+				user.setTel(aes256.decrypt(rs.getString(4)));
+				user.setEmail(aes256.decrypt(rs.getString(5)));
+				user.setBirth_date(aes256.decrypt(rs.getString(6)));
 				user.setDate(rs.getTimestamp(7));
 				user.setEmail_check(rs.getInt(8));
 	
@@ -98,10 +108,13 @@ public class UserDAO {
 		
 	}
 	
-	public UserDTO getUser(String member_id) { // notice_no 가져와서 Detail부분에 값 뿌리기
+	public UserDTO getUser(String member_id) throws UnsupportedEncodingException, NoSuchAlgorithmException, GeneralSecurityException { // notice_no 가져와서 Detail부분에 값 뿌리기
 		UserDTO user = new UserDTO();
 		String sql = "select * from member where member_id=" + member_id; // no의 값과 같은것 선택
 
+		//암호화 객체 생성
+		AES256 aes256 = new AES256();
+				
 		try {
 			dbconn = DriverManager.getConnection(url, id, pw);
 			stmt = dbconn.createStatement();
@@ -110,11 +123,11 @@ public class UserDAO {
 			// 연결
 			while (rs.next()) {
 				user.setMember_id(rs.getInt(1));
-				user.setName(rs.getString(2));
-				user.setPwd(rs.getString(3));
-				user.setTel(rs.getString(4));
-				user.setEmail(rs.getString(5));
-				user.setBirth_date(rs.getString(6));
+				user.setName( aes256.decrypt(rs.getString(2)));
+				user.setPwd(aes256.decrypt(rs.getString(3)));
+				user.setTel(aes256.decrypt(rs.getString(4)));
+				user.setEmail(aes256.decrypt(rs.getString(5)));
+				user.setBirth_date(aes256.decrypt(rs.getString(6)));
 				user.setDate(rs.getTimestamp(7));
 				user.setEmail_check(rs.getInt(8));
 	

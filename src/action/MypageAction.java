@@ -26,9 +26,8 @@ public class MypageAction implements CommandAction{
 	public String requestPro(HttpServletRequest request,
 			HttpServletResponse response) throws Throwable {
 		HttpSession session = request.getSession();
-		String s = (String)session.getAttribute("loginUser");
+		int member_id =  Integer.parseInt((String) session.getAttribute("idKey"));
 		
-		int member_id = 82200001; // 나중에 Session에서 구해올 것임.
 		String tab= request.getParameter("tab");
 		String view =null;
 		int perPage=10;

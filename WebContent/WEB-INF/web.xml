@@ -9,8 +9,7 @@
     <servlet-class>controller.ControllerAction</servlet-class>
     <init-param>
       <param-name>propertyConfig</param-name>
-      <param-value>C:\eclipse-workspace\Sharepot\WebContent\WEB-INF\commandPro.properties</param-value>
-    </init-param>
+       <param-value>WEB-INF/commandPro.properties</param-value></init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>ControllerAction</servlet-name>

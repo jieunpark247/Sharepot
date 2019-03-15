@@ -27,9 +27,10 @@ public class ControllerAction extends HttpServlet {
 	private Map commandMap = new HashMap();
 
 	public void init(ServletConfig config) throws ServletException {
-
-		String props = config.getInitParameter("propertyConfig");
+		String props = config.getServletContext().getRealPath("/") + config.getInitParameter("propertyConfig");
 		System.out.println("불러온경로=" + props);
+
+		
 
 		Properties pr = new Properties();
 		FileInputStream f = null;
@@ -86,7 +87,8 @@ public class ControllerAction extends HttpServlet {
 		requestPro(request, response);
 	}
 
-	private void requestPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void requestPro(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String view = null;
 		CommandAction com = null;
 		try {
@@ -96,24 +98,24 @@ public class ControllerAction extends HttpServlet {
 			System.out.println("request.getContextPath()=" + request.getContextPath());
 			if (command.indexOf(request.getContextPath()) == 0) {
 				command = command.substring(request.getContextPath().length());
-				System.out.println("command=" + command); 
+				System.out.println("command=" + command);
 			}
-			com = (CommandAction) commandMap.get(command); 
+			com = (CommandAction) commandMap.get(command);
 			System.out.println("com=" + com);
 			view = com.requestPro(request, response);
 			System.out.println("view=" + view);
 		} catch (Throwable e) {
 			throw new ServletException(e);
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
-		
-		if(request.getAttribute("isRedirect")!=null) {
+
+		if (request.getAttribute("isRedirect") != null) {
 			System.out.println("isRedirect");
 			response.sendRedirect(view);
-		}else if(view==null||view.equals("")){
-			
-		}else {
+		} else if (view == null || view.equals("")) {
+
+		} else {
 			System.out.println("Forward");
 
 			dispatcher.forward(request, response);

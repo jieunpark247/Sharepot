@@ -190,8 +190,8 @@ public class ManagerItemDAO extends HttpServlet {
 
 	public int listWrite(ManagerItemDTO managerItemDTO) {
 		
-		String sql = "insert into items (item_no, item_name,img,state,location,cost,date) "
-				+ "values (?,?, ?, 1, ?, ?, now())";
+		String sql = "insert into items (item_name,img,state,location,cost,date) "
+				+ "values (?, ?, 1, ?, ?, now())";
 				
 		int su = 0;
 		conn = getConnection();

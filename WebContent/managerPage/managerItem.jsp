@@ -48,9 +48,7 @@
                                  <img src="photo.png" alt="" width="150" height="150" class="img-circle">
                              </div>
                              <header class="sign-title">물품 사진</header>
-                                <div class="form-group">
-                                 <input type="text" class="form-control" placeholder="물품 코드" name="item_no">
-                                   </div> 
+                              
                                    <div class="form-group">
                                  <input type="text" class="form-control" placeholder="물품 이름" name="item_name">
                              </div>
@@ -65,9 +63,7 @@
                            <div class="form-group">
                                  <input type="text" class="form-control" placeholder="물품 가격" name="cost">
                              </div>
-                             <div class="form-group">
-                                 <input type="text" class="form-control" placeholder="물품 수량" name="ea">
-                             </div>
+                           
                              <button type="submit" class="btn btn-success rounded btn-lg">등록하기</button>
                              <hr>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

@@ -103,5 +103,18 @@ public class MainDTO {
 	public void setWeather_state_array(String weather_state_array) {
 		this.weather_state_array = weather_state_array;
 	}
+	
+	public String graph10()
+	{
+		
+	
+		return (100*Double.parseDouble(pm10_array)/151.0)+"";
+	}
+	public String graph25()
+	{
+		
+	
+		return (100*Double.parseDouble(pm25_array)/76.0)+"";
+	}
 
 }
